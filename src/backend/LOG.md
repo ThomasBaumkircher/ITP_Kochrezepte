@@ -7,4 +7,4 @@
 
 
 ## 2025-13-01
-- [ ] Implement Microsoft OAuth2 authentication
+- [X] Implement Microsoft OAuth2 authentication

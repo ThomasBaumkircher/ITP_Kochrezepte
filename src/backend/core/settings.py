@@ -13,9 +13,9 @@ class Settings(BaseSettings):
     def __init__(self) -> None:
         super().__init__()
 
-        #self.OPENAPI_CLIENT_ID = os.environ.get('OPENAPI_CLIENT_ID')
-        #self.APP_CLIENT_ID = os.environ.get('APP_CLIENT_ID')
-        #self.TENANT_ID = os.environ.get('TENANT_ID')
+        self.OPENAPI_CLIENT_ID = os.environ.get('OPENAPI_CLIENT_ID')
+        self.APP_CLIENT_ID = os.environ.get('APP_CLIENT_ID')
+        self.TENANT_ID = os.environ.get('TENANT_ID')
 
     @computed_field
     @property
