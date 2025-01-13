@@ -12,13 +12,11 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /usr/backend/requirements.txt
 
 # install dependencies
-# RUN set -eux \
-#     && apk add --no-cache --virtual .build-deps build-base \
-#     libressl-dev libffi-dev gcc musl-dev python3-dev \
-#     postgresql-dev \
-#     && pip install --upgrade pip setuptools wheel \
-#     && pip install -r /usr/server/requirements.txt \
-#     && rm -rf /root/.cache/pip
+RUN set -eux \
+    #&& apk add --no-cache --virtual .build-deps build-base \
+    #libressl-dev libffi-dev gcc musl-dev python3-dev \
+    #postgresql-dev \
+    && pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
 
 # copy project
