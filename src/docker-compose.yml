@@ -15,7 +15,7 @@ services:
     build: ./backend
     image: jasonbigcow/oauth2-fastapi
     ports:
-      - 5001:5001
+      - 8082:8082
     volumes:
       - ./backend/:/usr/backend/
     env_file:
