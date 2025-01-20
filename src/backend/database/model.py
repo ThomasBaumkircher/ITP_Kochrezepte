@@ -17,8 +17,8 @@ class Recipe(Base):
     creator: Mapped[String] = mapped_column(String, index=True, nullable=True)
 
     # Metadata
-    created_at: Mapped[Time] = mapped_column(Time)
-    updated_at: Mapped[Time] = mapped_column(Time)
+    created_at: Mapped[Optional[Time]] = mapped_column(Time)
+    updated_at: Mapped[Optional[Time]] = mapped_column(Time)
     deleted_at: Mapped[Optional[Time]] = mapped_column(Time, nullable=True)
 
 

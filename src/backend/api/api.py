@@ -58,7 +58,7 @@ class GenericRouter(APIRouter, Generic[W, X, V]):
         obj_id = await self.crud.post(payload)
 
         # Create the response object using the response model,passed into the constructor
-        response_obj = self.response_model(id=obj_id, **vars(payload)) # type: ignore
+        response_obj = self.response_model(**vars(await self.crud.get(obj_id))) # type: ignore
 
         return response_obj
 
