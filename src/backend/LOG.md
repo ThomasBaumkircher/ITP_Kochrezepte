@@ -8,3 +8,8 @@
 
 ## 2025-13-01
 - [X] Implement Microsoft OAuth2 authentication
+
+## 2025-20-01
+- [X] Implement generic CRUD and API interfaces
+- [X] Discuss database schema
+- [X] Implement database schema
