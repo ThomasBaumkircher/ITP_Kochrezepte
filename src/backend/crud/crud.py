@@ -1,6 +1,5 @@
 from fastapi import HTTPException
-from pydantic import BaseModel
-from db.session import session
+from database.config import session
 from sqlalchemy import ScalarResult, select
 from typing import Type, TypeVar, Generic
 
@@ -20,7 +19,7 @@ class GenericCRUD(Generic[T]):
 
         return obj.id # type: ignore
 
-    async def put(self, id: int, payload) -> T:
+    async def patch(self, id: int, payload) -> T:
         data = payload.model_dump()
         obj = session.get(self.model, id)
 

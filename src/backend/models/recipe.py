@@ -18,10 +18,6 @@ class RecipeResponse(Recipe):
     created_at: datetime
     updated_at: datetime
 
-class RecipeList(BaseModel):
-    count: int
-    recipes: List[RecipeResponse]
-
 class RecipePatch(BaseModel):
     id: int
     name: Optional[str] = None

@@ -1,13 +1,13 @@
 from functools import wraps
 from fastapi import APIRouter, HTTPException, Query
 from crud.crud import GenericCRUD, T
-from crud.user import user_crud
 from typing import Generic, TypeVar, Type
-from sqlalchemy.engine.result import ScalarResult
 import re
 
-# Request Model Type
+# POST Model Type
 W = TypeVar('W')
+# PATCH Model Type
+X = TypeVar('X')
 # Response Model Type
 V = TypeVar('V')
 
@@ -23,23 +23,23 @@ def validate(*args, **kwargs):
     return decorator
 
 
-class GenericRouter(APIRouter, Generic[W, V]):
-    def __init__(self, crud: GenericCRUD[T], request_model: Type[W], response_model: Type[V], C = True, R = True, U = True, D = True):
+class GenericRouter(APIRouter, Generic[W, X, V]):
+    def __init__(self, crud: GenericCRUD[T], post_model: Type[W], patch_model: Type[X], response_model: Type[V], C = True, R = True, U = True, D = True):
         super().__init__()
         self.crud = crud
         self.response_model = response_model
 
-        model_name = self.response_model.__name__.split("DB")[0]
+        model_name = self.response_model.__name__.split("Response")[0]
         self.prefix = f"/{model_name.lower()}s"
         self.tags = [model_name]
 
         # Wrapper functions for the CRUD operations that require the request model (at runtime)
-        async def post(payload: request_model):
+        async def post(payload: post_model):
             return await self.post(payload)
-        async def put(id: int, payload: request_model):
-            return await self.put(id, payload)
+        async def patch(id: int, payload: patch_model):
+            return await self.patch(id, payload)
         # Generate query description from fields of request model
-        query_description = ", ".join([f"{field}: {type.__name__}" for field, type in request_model.__annotations__.items()])
+        query_description = ", ".join([f"{field}: {type.__name__}" for field, type in response_model.__annotations__.items()])
         async def get_all(filter: list[str] = Query([], description = "Filter options: " + query_description + "\n\nExample form: ?filters=name=*TestName*,address=*TestAddress*")):
             return await self.get_all(filter)
 
@@ -50,7 +50,7 @@ class GenericRouter(APIRouter, Generic[W, V]):
             self.add_api_route("/", get_all, methods=["GET"], status_code=200, response_model=list[response_model])
             self.add_api_route("/{id}/", self.get, methods=["GET"], status_code=200, response_model=response_model)
         if U:
-            self.add_api_route("/{id}/", put, methods=["PUT"], status_code=200, response_model=response_model)
+            self.add_api_route("/{id}/", patch, methods=["PATCH"], status_code=200, response_model=response_model)
         if D:
             self.add_api_route("/{id}/", self.delete, methods=["DELETE"], status_code=200)
 
@@ -76,8 +76,8 @@ class GenericRouter(APIRouter, Generic[W, V]):
 
         return obj
 
-    async def put(self, id: int, payload): # type: ignore
-        obj = await self.crud.put(id, payload)
+    async def patch(self, id: int, payload): # type: ignore
+        obj = await self.crud.patch(id, payload)
 
         if not obj:
             raise HTTPException(status_code=404, detail="Not found")
