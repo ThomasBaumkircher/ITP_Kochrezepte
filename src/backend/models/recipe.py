@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import time
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -15,12 +15,8 @@ class RecipePost(Recipe):
 
 class RecipeResponse(Recipe):
     id: int
-    created_at: datetime
-    updated_at: datetime
-
-class RecipeList(BaseModel):
-    count: int
-    recipes: List[RecipeResponse]
+    created_at: time
+    updated_at: time
 
 class RecipePatch(BaseModel):
     id: int
