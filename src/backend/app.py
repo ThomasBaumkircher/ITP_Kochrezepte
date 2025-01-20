@@ -13,7 +13,8 @@ app = FastAPI(
         'usePkceWithAuthorizationCodeGrant': True,
         'clientId': settings.OPENAPI_CLIENT_ID,
     },
-    dependencies=[Security(azure_scheme)])
+    #dependencies=[Security(azure_scheme)]
+)
 
 app.include_router(me.router, prefix="/api")
 
