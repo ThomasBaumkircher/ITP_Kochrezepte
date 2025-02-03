@@ -9,6 +9,7 @@ azure_scheme = SingleTenantAzureAuthorizationCodeBearer(
     app_client_id=settings.APP_CLIENT_ID,
     tenant_id=settings.TENANT_ID,
     scopes=settings.SCOPES,
+    redirect_uri=settings.BACKEND_CORS_ORIGINS[0] + "/callback",
 )
 
 
