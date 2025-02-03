@@ -23,3 +23,4 @@
 - [X] Look for bugs and fix
 - Bugs:
     - [X] Patch changing ID
+- [X] Implement user recipes endpoint

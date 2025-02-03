@@ -1,9 +1,13 @@
 from typing import Generator
 
-from database.config import async_session
+from database.config import session
+from crud.recipes import recipe_crud
 
 
-async def get_db() -> Generator:
-    async with async_session() as session:
-        async with session.begin():
-            yield session
+def get_db() -> Generator:
+    with session.begin():
+        yield session
+
+
+def get_recipe_crud() -> Generator:
+    yield recipe_crud
