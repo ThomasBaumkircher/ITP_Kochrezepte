@@ -24,4 +24,5 @@
 - Bugs:
     - [X] Patch changing ID
     - [X] Get all recipes returning private recipes from other users
+    - [X] Include redirect URI in OAuth2 configuration
 - [X] Implement user recipes endpoint
