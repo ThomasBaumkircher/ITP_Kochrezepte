@@ -23,4 +23,5 @@
 - [X] Look for bugs and fix
 - Bugs:
     - [X] Patch changing ID
+    - [X] Get all recipes returning private recipes from other users
 - [X] Implement user recipes endpoint
