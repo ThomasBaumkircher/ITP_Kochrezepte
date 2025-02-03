@@ -10,10 +10,6 @@
 - [X] Implement Microsoft OAuth2 authentication
 
 ## 2025-20-01
-### Backend
 - [X] Implement generic CRUD and API interfaces
 - [X] Discuss database schema
 - [X] Implement database schema
-
-### Frontend
-- [X] Implement microsoft OAuth
