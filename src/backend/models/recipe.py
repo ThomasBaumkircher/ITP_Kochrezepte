@@ -19,7 +19,6 @@ class RecipeResponse(Recipe):
     updated_at: time
 
 class RecipePatch(BaseModel):
-    id: int
     name: Optional[str] = None
     description_short: Optional[str] = None
     description_md: Optional[str] = None
