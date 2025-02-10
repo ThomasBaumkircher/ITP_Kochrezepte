@@ -26,3 +26,7 @@
     - [X] Get all recipes returning private recipes from other users
     - [X] Include redirect URI in OAuth2 configuration
 - [X] Implement user recipes endpoint
+
+## 2025-10-02
+- [ ] Finish Microsoft OAuth2 implementation in frontend
+    Problem: The frontend does not support ssl yet and no workaround has been found
