@@ -29,4 +29,9 @@
 
 ## 2025-10-02
 - [ ] Finish Microsoft OAuth2 implementation in frontend
-    Problem: The frontend does not support ssl yet and no workaround has been found
+    - Problem: The frontend does not support ssl yet and no workaround has been found
+
+## 2025-24-02
+- [ ] Implement backend route tests
+    - Problem: Monkeypatch package is broken and cannot be installed
+- [X] Finish Microsoft OAuth2 implementation in frontend
