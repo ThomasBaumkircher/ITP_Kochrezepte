@@ -6,3 +6,6 @@
 
 ## 2025-20-01
 - [X] Implement microsoft OAuth
+
+## 2025-24-02
+- [ ] Further implement OAuth
