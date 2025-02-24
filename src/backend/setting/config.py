@@ -4,7 +4,7 @@ from functools import lru_cache
 
 class Settings:
     app_name: str = "FastAPI Vue3 OAuth2"
-    author: str = "Jason Liu"
+    author: str = "Thomas Baumkircher"
 
     database_url: str = os.getenv("DATABASE_URL")
 

@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     APP_CLIENT_ID: str = ""
     TENANT_ID: str = ""
     SCOPE_DESCRIPTION: str = "user_impersonation"
+    REDIRECT_URI: str = ""
 
     def __init__(self) -> None:
         super().__init__()
@@ -16,6 +17,7 @@ class Settings(BaseSettings):
         self.OPENAPI_CLIENT_ID = os.environ.get('OPENAPI_CLIENT_ID')
         self.APP_CLIENT_ID = os.environ.get('APP_CLIENT_ID')
         self.TENANT_ID = os.environ.get('TENANT_ID')
+        self.REDIRECT_URI = os.environ.get('REDIRECT_URI')
 
     @computed_field
     @property
