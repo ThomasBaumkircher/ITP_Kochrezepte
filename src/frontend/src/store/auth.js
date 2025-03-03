@@ -4,6 +4,7 @@ import { apiLogin, apiRefresh, apiLogout } from '../api/auth'
 import { useLoadingStore } from './loading';
 import { useDialogStore } from './dialog';
 import router from '../router';
+import { deleteCookie } from '../utils/cookies';
 
 export const useAuthStore = defineStore('auth', () => {
     const access_token = ref(null);
@@ -63,10 +64,14 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     function logout() {
-        apiLogout()
-        .then(res => {
+        //apiLogout()
+        //.then(res => {
             access_token.value = null;
             expires_in.value = null;
+
+            deleteCookie('access_token');
+            deleteCookie('email');
+            deleteCookie('username');
 
             dialogStore.setSuccess({
                 title: 'Logout Success',
@@ -78,7 +83,7 @@ export const useAuthStore = defineStore('auth', () => {
                 dialogStore.reset();
                 router.push('/login');
             },1000);
-        });
+        //});
     }
 
     function refresh() {

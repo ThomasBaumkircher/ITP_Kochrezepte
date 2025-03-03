@@ -9,6 +9,8 @@
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { jwtDecode } from "jwt-decode";
+import router from '../router';
+import { getCookie } from '../utils/cookies';
 
 export default {
     data() {
@@ -19,31 +21,35 @@ export default {
     },
 
     async beforeMount() {
-        try {
-            const route = useRoute();
+        const route = useRoute();
+        if (route.query.code) {
+            try {
+                const response = await axios.post('https://login.microsoftonline.com/c930dbcd-6b10-4cff-a628-46f5dec8a038/oauth2/v2.0/token', {
+                    client_id: 'ed6fe01e-2f64-49da-bce2-ea1e08cee1dd',
+                    grant_type: 'authorization_code',
+                    code: route.query.code,
+                    redirect_uri: 'https://localhost:5173/',
+                    client_secret: '.Af8Q~olnPQochvWqHIPSDHgQXnCKESActf04cLn',
+                    scope: 'openid profile User.Read email offline_access',
+                }, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                // set cookie
+                document.cookie = 'access_token=' + response.data.access_token;
 
-            const response = await axios.post('https://login.microsoftonline.com/c930dbcd-6b10-4cff-a628-46f5dec8a038/oauth2/v2.0/token', {
-                client_id: 'ed6fe01e-2f64-49da-bce2-ea1e08cee1dd',
-                grant_type: 'authorization_code',
-                code: route.query.code,
-                redirect_uri: 'https://localhost:5173/',
-                client_secret: '.Af8Q~olnPQochvWqHIPSDHgQXnCKESActf04cLn',
-                scope: 'openid profile User.Read email offline_access',
-            }, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-            // set cookie
-            document.cookie = 'access_token=' + response.data.access_token;
+                const data = jwtDecode(response.data.access_token);
+                document.cookie = 'username=' + data.name;
+                document.cookie = 'email=' + data.unique_name;
 
-            const data = jwtDecode(response.data.access_token);
-            document.cookie = 'username=' + data.name;
-            document.cookie = 'email=' + data.unique_name;
+                axios.defaults.headers.common['Authorization'] = 'Baerer ' + response.data.access_token;
+            } catch (error) {
+            }
+        }
 
-            axios.defaults.headers.common['Authorization'] = 'Baerer ' + response.data.access_token;
-        } catch (error) {
-            console.error(error);
+        if (!getCookie('access_token')) {
+            router.push('/login');
         }
     }
 }

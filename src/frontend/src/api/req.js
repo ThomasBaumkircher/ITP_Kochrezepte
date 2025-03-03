@@ -23,8 +23,6 @@ const errorHandler = (state, msg) => {
   }
 };
 
-console.log(import.meta.env.VITE_APP_API_URL);
-
 var instance = axios.create({
   baseURL:
     (import.meta.env.VITE_APP_API_URL ) ,
