@@ -35,3 +35,8 @@
 - [ ] Implement backend route tests
     - Problem: Monkeypatch package is broken and cannot be installed
 - [X] Finish Microsoft OAuth2 implementation in frontend
+
+## 2025-03-03
+- [ ] Implement backend route tests
+    - Wait for fix on monkeypatch install
+- [ ] Help Julian with frontend implementation
