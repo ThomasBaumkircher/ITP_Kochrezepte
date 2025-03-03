@@ -22,9 +22,10 @@ export default {
             var url = new URL( 'c930dbcd-6b10-4cff-a628-46f5dec8a038/oauth2/v2.0/authorize', 'https://login.microsoftonline.com/')
             url.searchParams.append('client_id', 'ed6fe01e-2f64-49da-bce2-ea1e08cee1dd')
             url.searchParams.append('response_type', 'code')
-            url.searchParams.append('redirect_uri', 'https://localhost:8002/')
+            url.searchParams.append('grant_type', 'authorization_code')
+            url.searchParams.append('redirect_uri', 'https://localhost:5173/')
             url.searchParams.append('response_mode', 'query')
-            url.searchParams.append('scope', 'openid profile email')
+            url.searchParams.append('scope', 'openid profile User.Read email offline_access')
 
 
             window.open(url.href, '_self')

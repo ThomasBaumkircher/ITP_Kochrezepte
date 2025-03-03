@@ -8,7 +8,7 @@
 <script>
 import axios from 'axios';
 import { useRoute } from 'vue-router';
-import { useCookies } from 'vue-cookies';
+import { jwtDecode } from "jwt-decode";
 
 export default {
     data() {
@@ -21,26 +21,27 @@ export default {
     async beforeMount() {
         try {
             const route = useRoute();
-            console.log(route.query.code);
 
             const response = await axios.post('https://login.microsoftonline.com/c930dbcd-6b10-4cff-a628-46f5dec8a038/oauth2/v2.0/token', {
                 client_id: 'ed6fe01e-2f64-49da-bce2-ea1e08cee1dd',
                 grant_type: 'authorization_code',
                 code: route.query.code,
-                redirect_uri: 'https://localhost:8002/',
+                redirect_uri: 'https://localhost:5173/',
                 client_secret: '.Af8Q~olnPQochvWqHIPSDHgQXnCKESActf04cLn',
-                scope: 'openid profile email'
+                scope: 'openid profile User.Read email offline_access',
             }, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            console.log(response.data);
             // set cookie
             document.cookie = 'access_token=' + response.data.access_token;
 
+            const data = jwtDecode(response.data.access_token);
+            document.cookie = 'username=' + data.name;
+            document.cookie = 'email=' + data.unique_name;
+
             axios.defaults.headers.common['Authorization'] = 'Baerer ' + response.data.access_token;
-            const response2 = await axios.get('https://graph.microsoft.com//v1.0/me/email');
         } catch (error) {
             console.error(error);
         }
