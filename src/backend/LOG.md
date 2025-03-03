@@ -39,4 +39,4 @@
 ## 2025-03-03
 - [ ] Implement backend route tests
     - Wait for fix on monkeypatch install
-- [ ] Help Julian with frontend implementation
+- [X] Help Julian with frontend implementation
