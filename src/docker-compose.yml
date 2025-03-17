@@ -19,7 +19,7 @@ services:
       - ./backend/:/usr/backend/
     env_file:
       - ./backend/.env
-    command: python3 run.py --dev
+    command: python3 app/run.py --dev
     depends_on:
       - db
 

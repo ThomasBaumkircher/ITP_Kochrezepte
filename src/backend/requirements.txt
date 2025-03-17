@@ -1,7 +1,7 @@
 python-dotenv==1.0.0
 uvicorn==0.23.1
 fastapi==0.100.1
-SQLAlchemy==2.0.31
+SQLAlchemy==2.0.37
 databases==0.9.0
 asyncpg==0.28.0
 greenlet==2.0.2
@@ -9,14 +9,19 @@ python-multipart==0.0.6
 bcrypt==4.0.1
 passlib==1.7.4
 python-jose==3.3.0
-pydantic-settings==2.7.1
-fastapi-azure-auth==5.0.1
+fastapi-azure-auth
+pydantic-settings
 
-# alembic==1.11.3
+alembic==1.14.1
+psycopg
+psycopg-binary
+pytest==7.2.0
+httpx==0.23.1
+pytest-asyncio==0.18.3
 # annotated-types==0.5.0
 # anyio==3.7.1
-asyncio==3.4.3
-asyncpg==0.28.0
+# asyncio==3.4.3
+# asyncpg==0.28.0
 # bcrypt==4.0.1
 # click==8.1.6
 # databases==0.7.0

@@ -6,17 +6,16 @@ from api import recipes
 from database.config import engine, database, Base
 from core.settings import settings
 
-#from core.openid_config import azure_scheme
-#from fastapi import Security
+from core.openid_config import AzureScheme
+from fastapi import Security
 
 
 app = FastAPI(
-    swagger_ui_oauth2_redirect_url='/oauth2-redirect',
     swagger_ui_init_oauth={
         'usePkceWithAuthorizationCodeGrant': True,
         'clientId': settings.OPENAPI_CLIENT_ID,
     },
-    #dependencies=[Security(azure_scheme)]
+    dependencies=[Security(AzureScheme.azure_scheme)]
 )
 
 

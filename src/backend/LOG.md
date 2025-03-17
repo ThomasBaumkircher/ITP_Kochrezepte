@@ -40,3 +40,7 @@
 - [ ] Implement backend route tests
     - Wait for fix on monkeypatch install
 - [X] Help Julian with frontend implementation
+    - Implemented auth
+
+## 2025-17-03
+- [ ] Implement backend route tests
