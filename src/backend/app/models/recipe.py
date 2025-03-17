@@ -1,4 +1,3 @@
-from datetime import time
 from pydantic import BaseModel
 from typing import Optional
 
@@ -13,14 +12,13 @@ class Recipe(BaseModel):
 class RecipePost(Recipe):
     pass
 
-class RecipeResponse(Recipe):
+class RecipeResponse(BaseModel):
     id: int
-    created_at: time
-    updated_at: time
+    created_at: str
+    updated_at: str
 
 class RecipePatch(BaseModel):
     name: Optional[str] = None
     description_short: Optional[str] = None
     description_md: Optional[str] = None
-    creator: Optional[str] = None
     is_public: Optional[bool] = False

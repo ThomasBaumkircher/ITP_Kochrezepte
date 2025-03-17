@@ -5,12 +5,11 @@ from fastapi_azure_auth import SingleTenantAzureAuthorizationCodeBearer
 from core.settings import settings
 
 
-class AzureScheme:
-    azure_scheme = SingleTenantAzureAuthorizationCodeBearer(
-        app_client_id=settings.APP_CLIENT_ID,
-        tenant_id=settings.TENANT_ID,
-        scopes=settings.SCOPES,
-    )
+azure_scheme = SingleTenantAzureAuthorizationCodeBearer(
+    app_client_id=settings.APP_CLIENT_ID,
+    tenant_id=settings.TENANT_ID,
+    scopes=settings.SCOPES,
+)
 
 
 @asynccontextmanager
@@ -18,5 +17,5 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """
     Load OpenID config on startup.
     """
-    await AzureScheme.azure_scheme.openid_config.load_config()
+    await azure_scheme.openid_config.load_config()
     yield

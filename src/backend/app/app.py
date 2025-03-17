@@ -6,7 +6,7 @@ from api import recipes
 from database.config import engine, database, Base
 from core.settings import settings
 
-from core.openid_config import AzureScheme
+from core.openid_config import azure_scheme
 from fastapi import Security
 
 
@@ -15,7 +15,7 @@ app = FastAPI(
         'usePkceWithAuthorizationCodeGrant': True,
         'clientId': settings.OPENAPI_CLIENT_ID,
     },
-    dependencies=[Security(AzureScheme.azure_scheme)]
+    dependencies=[Security(azure_scheme)]
 )
 
 
