@@ -53,6 +53,11 @@ def test_create(test_app_mock_auth, monkeypatch):
         return 1
     monkeypatch.setattr(RecipeCRUD, "post", mock_create)
 
+    recipe = Recipe(id=1, name="test", creator="asdf", is_public=True, created_at="2021-01-01T00:00:00Z", updated_at="2021-01-01T00:00:00Z", description_short="short", description_md="md")
+    async def mock_get(*_):
+        return recipe
+    monkeypatch.setattr(RecipeCRUD, "get", mock_get)
+
     response = test_app_mock_auth.post("/api/recipes", json=RecipePost(**vars(recipe)).model_dump())
     assert response.status_code == status.HTTP_201_CREATED
     assert response.json() == RecipeResponse(**vars(recipe)).model_dump()
