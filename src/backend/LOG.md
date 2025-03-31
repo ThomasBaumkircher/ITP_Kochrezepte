@@ -43,4 +43,4 @@
     - Implemented auth
 
 ## 2025-17-03
-- [ ] Implement backend route tests
+- [X] Implement backend route tests
