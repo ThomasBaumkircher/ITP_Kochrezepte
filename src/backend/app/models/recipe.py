@@ -6,6 +6,7 @@ class Recipe(BaseModel):
     name: str
     description_short: str
     description_md: str
+    creator: Optional[str] = None
     is_public: Optional[bool] = False
 
 class RecipePost(Recipe):
