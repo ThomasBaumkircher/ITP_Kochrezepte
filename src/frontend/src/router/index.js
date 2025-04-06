@@ -7,34 +7,37 @@ import TestView from '../views/TestView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import { useAuthStore } from '../store/auth'
 
-const routes = [
-    {
-        path: '/profile',
-        name: 'Profile',
-        component: ProfileView,
-        meta: { requiresAuth: true },
-    },
+import RecipeList from '../views/RecipeList.vue'
+import RecipeDetail from '../views/RecipeDetail.vue'
+import RecipeForm from '../views/RecipeForm.vue'
 
-    {
-        path: '/',
-        name: 'Index',
-        component: HomeView,
-    },
+
+const routes = [
     {
         path: '/login',
         name: 'Login',
         component: TestView,
     },
     {
-        path: '/logout',
-        name: 'Logout',
-        component: LogoutView,
-    },
-    {
-        path: '/register',
-        name: 'Register',
-        component: RegisterView,
-    }
+        path: '/',
+        name: 'home',
+        component: RecipeList
+      },
+      {
+        path: '/recipe/:id',
+        name: 'recipe-detail',
+        component: RecipeDetail
+      },
+      {
+        path: '/create',
+        name: 'create-recipe',
+        component: RecipeForm
+      },
+      {
+        path: '/edit/:id',
+        name: 'edit-recipe',
+        component: RecipeForm
+      }
 ]
 
 const router = createRouter({
